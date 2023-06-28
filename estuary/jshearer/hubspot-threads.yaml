@@ -1,0 +1,122 @@
+collections:
+  estuary/jshearer/hubspot-thread-enrichments/v1:
+    schema:
+      properties:
+        id:
+          type: string
+        subject:
+          type: string
+        companies:
+          type: string
+        enrichments:
+          type: object
+          properties:
+            is_relevant:
+              type: boolean
+              description:
+                True if this thread is with someone who could be, or already is a
+                customer. False for any other kind of conversation
+            probability_to_close:
+              type: string
+              description:
+                This field indicates how likely it is that a successful deal will
+                be closed with this prospect. If this is not a conversation with a prospective
+                customer, use 'not_applicable'
+            probability_to_churn:
+              type: string
+              description:
+                This field indicates how likely it is that an existing customer will
+                churn (leave, stop being a customer). If this is not a conversation with an
+                existing customer, use 'not applicable'.
+            overview:
+              type: string
+              description:
+                An overview of this conversation summarizing useful and relevant
+                information
+            helpful_info:
+              type: string
+              description:
+                Any real, truthful information that would be helpful to a salesperson
+                who has the goal of closing this prospect, be as specific as possible. If you
+                can't extract any sufficiently useful data, say 'none' instead of guessing.
+            sentiment:
+              type: string
+              description: How is the subject of this conversation feeling about us?
+            customer_stage:
+              type: string
+              description:
+                What stage of the sales funnel is this person in? If it's not extremely
+                clear, report as unknown.
+
+      type: object
+      required:
+        - id
+    key:
+      - /id
+    derive:
+      using:
+        typescript:
+          module: open_ai_enrichment.ts
+      transforms:
+        - name: enrichWithChatGPT
+          shuffle: any
+          source:
+            name: estuary/jshearer/hubspot-threads/v1
+  estuary/jshearer/hubspot-threads/v1:
+    derive:
+      using:
+        sqlite:
+          migrations:
+            - |
+              CREATE TABLE companies (
+                id TEXT,
+                data TEXT,
+                PRIMARY KEY (id)
+              );
+              CREATE TABLE emails (
+                id TEXT,
+                from_email TEXT,
+                to_email TEXT,
+                body TEXT,
+                normalized_subject TEXT,
+                date TEXT,
+                data TEXT,
+                PRIMARY KEY (id)
+              );
+
+              CREATE INDEX from_email_idx ON emails (from_email);
+              CREATE INDEX to_email_idx ON emails (to_email);
+
+              CREATE TABLE email_companies (
+                email_id TEXT,
+                company_id TEXT,
+                PRIMARY KEY (email_id, company_id)
+              );
+      transforms:
+        - name: load_companies
+          priority: 10
+          source: estuary/marketing/hubspot/v2/companies
+          shuffle: any
+          lambda: seen_company.sql
+        - name: load_emails
+          priority: 1
+          source: estuary/marketing/hubspot/v2/engagements_emails
+          shuffle: any
+          lambda: seen_email.sql
+    schema:
+      properties:
+        id:
+          type: string
+        companies:
+          type: array
+          items:
+            $ref: ../marketing/hubspot/v2/companies.schema.yaml
+        messages:
+          type: array
+          items:
+            $ref: ../marketing/hubspot/v2/engagements_emails.schema.yaml
+      type: object
+      required:
+        - id
+    key:
+      - /id

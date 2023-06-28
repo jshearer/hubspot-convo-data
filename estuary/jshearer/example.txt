@@ -1,0 +1,50 @@
+Participant Organizations:
+- address: "1600 Pennsylvania Avenue", city: "Washington DC", country: "United States", description: "The White House is the official residence and workplace of the president of the United States.", domain: "whitehouse.gov", founded_year: "1776", name: "United States"
+
+Converastion History:
+1: From: David Yaffe <dave@estuary.dev>
+1: To: George Washington <g.washington@whitehouse.gov>
+1: Date: 2020-10-25T23:59:31.429000+00:00
+1:      Hey George,
+1:      Congrats on the country!
+1:      We'd be happy to schedule time to speak the first week of December.  Our
+1:      schedules are still pretty free noon to 4 PM ET Tuesday through Thursday.
+1:      Let me know what's best for you and I can shoot over an invite.
+1:      -Dave
+
+2: From: David Yaffe <dave@estuary.dev>
+2: To: George Washington <g.washington@whitehouse.gov>
+2: Date: 2020-10-23T13:47:34.842000+00:00
+2:      George and Abe,
+2:      It's been a while since we've all spoken.  I hope you guys have fared as
+2:      well as possible through these trying times.
+2:      I wanted to reach out with a pretty sizable update.  Johnny and I have
+2:      completed the end-to-end product that we spoke about earlier this year.
+2:      We'd love to show it to you and get your feedback then potentially get it
+2:      into your hands if you're interested.  Would you be available for a demo in
+2:      the coming weeks?
+2:      Thanks,
+2:      Dave
+
+3: From: George Washington <g.washington@whitehouse.gov>
+3: To: David Yaffe <dave@estuary.dev>
+3: Date: 2020-10-26T14:22:58.671000+00:00
+3:      Thanks, David!
+3:      Let's put some time on the calendar Thursday 12/3 at 3pm EST.
+3:      Catch-up then
+
+4: From: George Washington <g.washington@whitehouse.gov>
+4: To: David Yaffe <dave@estuary.dev>
+4: Date: 2020-10-24T16:58:04.424000+00:00
+4:      Hey David,
+4:      Good to hear from you, hope all is well with you too. Would be great to
+4:      catch-up and hear about your progress.
+4:      I'm just heading out on vacation but let's
+4:      catch-up when I'm back in. How's the first week of December for you and
+4:      Johnny?
+4:      George
+
+5: From: David Yaffe <dave@estuary.dev>
+5: To: George Washington <g.washington@whitehouse.gov>
+5: Date: 2020-10-26T14:29:06.291000+00:00
+5:      Great, invite sent -- talk soon.

@@ -1,0 +1,10 @@
+---
+collections:
+  estuary/marketing/hubspot/v2/companies:
+    schema: companies.schema.yaml
+    key:
+      - /id
+  estuary/marketing/hubspot/v2/engagements_emails:
+    schema: engagements_emails.schema.yaml
+    key:
+      - /id
